@@ -65,7 +65,7 @@ In this project we test `HunyuanVideo` with `VBench2_aug_prompt`.
 
 We also test `HunyuanVideo-I2V` with `VBench2_aug_prompt` text prompts and `VBench2_aug_img_prompt` image prompts which are generated images with `VBench2_aug_prompt` text prompts by [FLUX.1](https://huggingface.co/black-forest-labs/FLUX.1-dev). The link of the generated image prompts are from:
 
-[Image prompt link coming soon](https://gitlab.xpaas.lenovo.com/watermark/watermark-video). 
+[Image prompt link](https://github.com/JeremyZhao1998/JeremyZhao1998.github.io/blob/master/images/VBench2_aug_img_prompt.zip). 
 
 Please download the generated image prompts, unzip the file and place the directory under:
 
