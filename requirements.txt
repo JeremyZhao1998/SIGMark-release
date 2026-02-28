@@ -1,0 +1,12 @@
+transformers>=4.45
+diffusers>=0.34.0
+accelerate>=1.10.1 
+bitsandbytes>=0.47.0
+opencv-python-headless>=4.12
+imageio>=2.37.0
+imageio-ffmpeg>=0.6.0
+scipy>=1.15
+pycryptodome>=3.23
+galois>=0.4.4
+ldpc>=2.2.8
+Levenshtein>=0.27.1
