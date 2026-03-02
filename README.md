@@ -1,20 +1,22 @@
-# SIGMark-internal test version
+# SIGMark
 
-This is the implementation for SIGMark: an in-generation video watermarking framework.
+This is the official implementation for SIGMark, an in-generation video watermarking framework.
+
+[![Project Page](https://img.shields.io/badge/Project-Page-1f6f50?style=for-the-badge)](https://jeremyzhao1998.github.io/SIGMark-release/) [![OpenReview](https://img.shields.io/badge/OpenReview-Forum-1f6f50?style=for-the-badge)](https://openreview.net/forum?id=tKyAD2LhnI) [![Paper](https://img.shields.io/badge/Paper-PDF-1f6f50?style=for-the-badge)](https://openreview.net/pdf?id=tKyAD2LhnI) [![Supp.](https://img.shields.io/badge/Supp.-Material-1f6f50?style=for-the-badge)](https://openreview.net/attachment?id=tKyAD2LhnI&name=supplementary_material)
+
+![](./docs/method.png)
 
 > **SIGMark: Scalable In-Generation Watermark with Blind Extraction for Video Diffusion**
 > 
 > By Xinjie Zhu, Zijing Zhao, Hui Jin, Qingxiao Guo, Yilong Ma, Yunhao Wang, Xiaobing Guo and Weifeng Zhang
 > 
-> Accpted by ICLR 2026
+> Accpted by International Conference on Learning Representations (ICLR), 2026
 
-![](./figures/method.png)
-
-### 1. Environment preparation
+## 1. Environment preparation
 
 Clone this repository, and create a conda environment.
 
-#### 1.1 Basic requirements
+### 1.1 Basic requirements
 
 Our project is built upon the following basic environment:
 
@@ -32,7 +34,7 @@ Other requirements can be installed through:
 pip install -r requirements.txt
 ```
 
-#### 1.2 Video generation fundation models:
+### 1.2 Video generation fundation models:
 
 In this project we now support `HunyuanVideo` and `HunyuanVideo-I2V`. You can download the community version of model files from huggingface:
 
@@ -55,7 +57,7 @@ And then place the files under the model in `<MODEL_PATH>` which you can configu
         ...
 ```
 
-### 2. Video generation datasets
+## 2. Video generation datasets
 
 We use [VBench-2.0 prompt suites](https://github.com/Vchitect/VBench/tree/master/VBench-2.0/prompts) for video generation evaluation.
 
@@ -65,7 +67,7 @@ In this project we test `HunyuanVideo` with `VBench2_aug_prompt`.
 
 We also test `HunyuanVideo-I2V` with `VBench2_aug_prompt` text prompts and `VBench2_aug_img_prompt` image prompts which are generated images with `VBench2_aug_prompt` text prompts by [FLUX.1](https://huggingface.co/black-forest-labs/FLUX.1-dev). The link of the generated image prompts are from:
 
-[Image prompt link](https://github.com/JeremyZhao1998/JeremyZhao1998.github.io/blob/master/images/VBench2_aug_img_prompt.zip). 
+[Image prompt link](https://github.com/JeremyZhao1998/JeremyZhao1998.github.io/blob/master/images/2026-SIGMark/VBench2_aug_img_prompt.zip). 
 
 Please download the generated image prompts, unzip the file and place the directory under:
 
@@ -83,9 +85,9 @@ Please download the generated image prompts, unzip the file and place the direct
 
 We test the results on subset of the text prompts of totally 88 prompts generating 400 video samples.
 
-### 3. Watermark generation and extraction
+## 3. Watermark generation and extraction
 
-#### 3.1 Basic Usage
+### 3.1 Basic Usage
 
 The file `main.py` launches the watermark generation or extraction according to configuration. For example, if you wish to generate watermarked videos (128x4 bit watermark on 512x512, 65 frames video) with `SIGMark` watermarking on `HunyuanVideo-I2V` model, run the following scripts:
 
@@ -113,7 +115,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --nproc_per_node=4 main.py --<arg>=<arg co
 
 After generating videos to `<output_path>`, you can simple change the `--mode=extract` to launch watermark extraction and test the extracted bit accuracy.
 
-#### 3.2 Scripts on different settings
+### 3.2 Scripts on different settings
 
 Our projct provide our method `SIGMark`, and support 2 baseline methods: [VideoShield](https://github.com/hurunyi/VideoShield) and [VideoMark](https://github.com/KYRIE-LI11/VideoMark). We also support generating videos without watermark for comparison on video quality. All the scripts are under `configs` folder:
 
@@ -123,6 +125,7 @@ Our projct provide our method `SIGMark`, and support 2 baseline methods: [VideoS
         └─ sigmark.sh  # SIGMark watermarking
         └─ videoshield.sh  # VideoShield watermarking
         └─ videomark.sh  # VideoMark watermarking
+        └─ sigmark_drop.sh  # SIGMark watermark extraction with temporal disturbance of dropping frames
     └─ HunyuanT2V-512x16  # HunyuanVideo model, 128x4 bit watermark
         └─ sigmark.sh  # SIGMark watermarking
         └─ videoshield.sh  # VideoShield watermarking
@@ -146,13 +149,13 @@ To launch watermarked video generation and watermark message extraction.
 
 The required CPU memory is >= 48GB. Single GPU memory >= 50GB is required for our scripts (A800 and H20 GPU is required). If you wish to use A100-40GB GPU, set the `--quant_text_encoder=1` to use quantization.
 
-#### 3.3 Small scale testing
+### 3.3 Small scale testing
 
 We test the code on A800 GPUs, generating one single video sample on a single GPU takes around 4 min, thus the whole dataset of 400 videos takes around 27 GPU hours.
 
 If you wish to first run through the code on small scale data, add the arg `--small_scale_test=4` in the scripts for example to run the first 4 batches.
 
-#### 3.4 Analyzing time and space cost during extraction
+### 3.4 Analyzing time and space cost during extraction
 
 Baseline methods like `VideoShield` and `VideoMark` are all non-blind watermarking. They requires saving all the watermarking information (watermark messages, encoding keys, etc) during watermarked video generation, and matching with all the maintained information during watermark extraction. Thus, the watermark extraction cost (both time and space) depend on the total number of videos generated through the platform.
 
@@ -172,6 +175,19 @@ bash configs/extraction_cost.sh
 
 For a fair comparison, we run the video inversion phase on GPU, and all other extraction operations including decryption and message matching (required only by baseline methods) on CPU. This script simulates the total number of generated videos of [100, 400, 800, 1600, 3200]. The video scale of 3200 requires **512GB CPU memory and 16 CPU threads** to run.
 
-![](./figures/timecost.png)
+![](./docs/timecost.png)
 
 Results shows that the time and space cost of `VideoShield` grows linearly with the total number of generated videos, which will be unacceptable when the video generation scale raise to millions, while our proposed `SIGMark` remains constant level, demonstrating that our proposed method is scalable.
+
+## Citation
+
+```bibtex
+@inproceedings{
+   zhu2026sigmark,
+   title={SIGMark: Scalable In-Generation Watermark with Blind Extraction for Video Diffusion},
+   author={Xinjie Zhu and Zijing Zhao and Hui Jin and Qingxiao Guo and Yilong Ma and Yunhao Wang and Xiaobing Guo and Weifeng Zhang},
+   booktitle={The Fourteenth International Conference on Learning Representations (ICLR)},
+   year={2026},
+   url={https://openreview.net/forum?id=tKyAD2LhnI}
+}
+```

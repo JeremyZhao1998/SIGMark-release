@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIGMark | Project Page</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f5f7f2;
+      --bg-accent: #e8efe3;
+      --text: #1f2a1f;
+      --muted: #4b5b4a;
+      --card: #ffffff;
+      --line: #dbe2d6;
+      --primary: #1f6f50;
+      --primary-hover: #15533c;
+      --shadow: 0 10px 30px rgba(24, 52, 33, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: "Source Sans 3", "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 12% 10%, var(--bg-accent) 0%, rgba(232, 239, 227, 0) 35%),
+        radial-gradient(circle at 90% 85%, #dce7e0 0%, rgba(220, 231, 224, 0) 30%),
+        var(--bg);
+      line-height: 1.6;
+    }
+
+    .page {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 48px 20px 56px;
+    }
+
+    .hero {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 34px 32px 30px;
+      box-shadow: var(--shadow);
+      animation: reveal 0.55s ease-out;
+      text-align: center;
+    }
+
+    h1 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-weight: 700;
+      line-height: 1.2;
+      font-size: clamp(1.7rem, 3.1vw, 2.35rem);
+      margin: 0 0 14px;
+      letter-spacing: 0.2px;
+    }
+
+    .authors {
+      font-size: calc(1.08rem + 1px);
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .authors strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .authors a {
+      color: inherit;
+      text-decoration: underline;
+      text-decoration-color: rgba(31, 42, 31, 0.35);
+      text-underline-offset: 2px;
+    }
+
+    .authors a:hover {
+      text-decoration-color: rgba(31, 42, 31, 0.85);
+    }
+
+    .meta {
+      margin-top: 12px;
+      font-size: calc(0.98rem + 1px);
+      color: var(--muted);
+    }
+
+    .meta strong {
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .meta a {
+      color: inherit;
+      text-decoration: underline;
+      text-decoration-color: rgba(31, 42, 31, 0.35);
+      text-underline-offset: 2px;
+    }
+
+    .meta a:hover {
+      text-decoration-color: rgba(31, 42, 31, 0.85);
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+      justify-content: center;
+    }
+
+    .hero-note {
+      margin-top: 10px;
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+
+    .btn {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 5px 16px;
+      line-height: 1.2;
+      font-size: calc(1rem + 1px);
+      text-decoration: none;
+      font-weight: 600;
+      border: 1px solid var(--primary);
+      background: var(--primary);
+      color: #fff;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+
+    .btn.primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .btn.secondary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      background: var(--primary-hover);
+      border-color: var(--primary-hover);
+    }
+
+    .btn.primary:hover {
+      background: var(--primary-hover);
+      border-color: var(--primary-hover);
+    }
+
+    .btn.secondary:hover {
+      background: var(--primary-hover);
+      border-color: var(--primary-hover);
+    }
+
+    section {
+      margin-top: 28px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      animation: reveal 0.7s ease-out both;
+    }
+
+
+    h2 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 1.55rem;
+      margin: 0 0 12px;
+    }
+
+    p {
+      margin: 0;
+      font-size: 1.03rem;
+    }
+
+    figure {
+      margin: 22px 0;
+    }
+
+    img {
+      width: 100%;
+      border-radius: 12px;
+      display: block;
+      background: #f8faf7;
+    }
+
+    figcaption {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-top: 10px;
+    }
+
+    .visual-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--line);
+      overflow: hidden;
+      border-radius: 12px;
+      font-size: 0.96rem;
+    }
+
+    .visual-table th,
+    .visual-table td {
+      border: 1px solid var(--line);
+      padding: 10px;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .visual-table th {
+      background: #f3f7f1;
+      font-weight: 600;
+    }
+
+    .visual-table img {
+      width: 100%;
+      max-width: 240px;
+      height: auto;
+      border-radius: 8px;
+      margin: 8px auto;
+      display: block;
+    }
+
+    .visual-table .prompt-img {
+      width: 72%;
+      max-width: 170px;
+    }
+
+    .visual-table .result-gif {
+      width: 100%;
+      max-width: 280px;
+    }
+
+    .visual-note {
+      margin-top: 12px;
+      font-size: 0.98rem;
+      color: var(--muted);
+    }
+
+    .result-caption {
+      margin-bottom: 10px;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .result-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+    }
+
+    .result-table {
+      width: 100%;
+      min-width: 940px;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+
+    .result-table th,
+    .result-table td {
+      border: 1px solid var(--line);
+      padding: 4px 4px;
+      line-height: 1.2;
+      text-align: center;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+    .result-table thead th {
+      background: #f3f7f1;
+      font-weight: 600;
+    }
+
+    .result-footnote {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.5;
+    }
+
+    .result-desc {
+      margin-top: 14px;
+    }
+
+    .timecost-img {
+      width: 85%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .result-footnote a {
+      color: inherit;
+      text-decoration: underline;
+      text-decoration-color: rgba(31, 42, 31, 0.35);
+      text-underline-offset: 2px;
+    }
+
+    .result-footnote a:hover {
+      text-decoration-color: rgba(31, 42, 31, 0.85);
+    }
+
+    .citation-pre {
+      margin-top: 10px;
+      background: #f7faf6;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      overflow-x: auto;
+    }
+
+    .method-note {
+      margin-top: 18px;
+    }
+
+    .method-intro {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .teaser-img {
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .sgo-img {
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    ul {
+      margin: 8px 0 0;
+      padding-left: 20px;
+    }
+
+    li {
+      margin: 6px 0;
+    }
+
+    footer {
+      margin-top: 26px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    @keyframes reveal {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        padding: 26px 14px 36px;
+      }
+
+      .hero,
+      section {
+        padding: 20px 16px;
+      }
+
+      .authors {
+        font-size: 1rem;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <h1>SIGMark: Scalable In-Generation Watermark with Blind Extraction for Video Diffusion</h1>
+      <p class="authors">
+        <strong>Xinjie Zhu*</strong>, <strong><a href="https://jeremyzhao1998.github.io/" target="_blank" rel="noopener noreferrer">Zijing Zhao*</a></strong>, Hui Jin, Qingxiao Guo, Yilong Ma, Yunhao Wang, Xiaobing Guo, and <strong><a href="https://research.lenovo.com/webapp/view_English/personal.html?id=541" target="_blank" rel="noopener noreferrer">Weifeng Zhang&#8224;</a></strong>
+      </p>
+      <p class="hero-note">* Equal contribution. &#8224; Corresponding author.</p>
+      <p class="meta"><a href="https://research.lenovo.com/webapp/view_English/home.html" target="_blank" rel="noopener noreferrer">Lenovo Research</a>, Beijing, China</p>
+      <p class="meta"><strong>Accepted by the Fourteenth International Conference on Learning Representations (<a href="https://iclr.cc/" target="_blank" rel="noopener noreferrer">ICLR 2026</a>)</strong></p>
+      <div class="links">
+        <a class="btn primary" href="https://openreview.net/forum?id=tKyAD2LhnI" target="_blank" rel="noopener noreferrer">OpenReview</a>
+        <a class="btn primary" href="https://openreview.net/pdf?id=tKyAD2LhnI" target="_blank" rel="noopener noreferrer">Paper</a>
+        <a class="btn secondary" href="https://openreview.net/attachment?id=tKyAD2LhnI&name=supplementary_material" target="_blank" rel="noopener noreferrer">Supp.</a>
+        <a class="btn secondary" href="https://github.com/JeremyZhao1998/SIGMark-release" target="_blank" rel="noopener noreferrer">Code</a>
+      </div>
+    </header>
+
+    <section>
+      <h2>Abstract</h2>
+      <p>
+        Artificial Intelligence Generated Content (AIGC), particularly video generation with diffusion models, has been advanced rapidly. Invisible watermarking is a key technology for protecting AI-generated videos and tracing harmful content, and thus plays a crucial role in AI safety. Beyond post-processing watermarks which inevitably degrade video quality, recent studies have proposed distortion-free in-generation watermarking for video diffusion models. However, existing in-generation approaches are non-blind: they require maintaining all the message-key pairs and performing template-based matching during extraction, which incurs prohibitive computational costs at scale. Moreover, when applied to modern video diffusion models with causal 3D Variational Autoencoders (VAEs), their robustness against temporal disturbance becomes extremely weak. To overcome these challenges, we propose SIGMark, a Scalable In-Generation watermarking framework with blind extraction for video diffusion. To achieve blind-extraction, we propose to generate watermarked initial noise using a Global set of Frame-wise PseudoRandom Coding keys (GF-PRC), reducing the cost of storing large-scale information while preserving noise distribution and diversity for distortion-free watermarking. To enhance robustness, we further design a Segment Group-Ordering module (SGO) tailored to causal 3D VAEs, ensuring robust watermark inversion during extraction under temporal disturbance. Comprehensive experiments on modern diffusion models show that SIGMark achieves very high bit-accuracy during extraction under both temporal and spatial disturbances with minimal overhead, demonstrating its scalability and robustness.
+      </p>
+    </section>
+
+    <section>
+      <h2>Visualization</h2>
+      <table class="visual-table">
+        <thead>
+          <tr>
+            <th>Image Prompt</th>
+            <th>Traditional Watermark (DCT)</th>
+            <th>SIGMark (Ours)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><img class="prompt-img" src="https://github.com/JeremyZhao1998/JeremyZhao1998.github.io/blob/master/images/2026-SIGMark/example-0.png?raw=1" alt="Image prompt example 0"></td>
+            <td><img class="result-gif" src="https://github.com/JeremyZhao1998/JeremyZhao1998.github.io/blob/master/images/2026-SIGMark/example-dct-0.gif?raw=1" alt="Traditional DCT watermark result 0"></td>
+            <td><img class="result-gif" src="https://github.com/JeremyZhao1998/JeremyZhao1998.github.io/blob/master/images/2026-SIGMark/example-sigmark-0.gif?raw=1" alt="SIGMark watermark result 0"></td>
+          </tr>
+          <tr>
+            <td><img class="prompt-img" src="https://github.com/JeremyZhao1998/JeremyZhao1998.github.io/blob/master/images/2026-SIGMark/example-1.png?raw=1" alt="Image prompt example 1"></td>
+            <td><img class="result-gif" src="https://github.com/JeremyZhao1998/JeremyZhao1998.github.io/blob/master/images/2026-SIGMark/example-dct-1.gif?raw=1" alt="Traditional DCT watermark result 1"></td>
+            <td><img class="result-gif" src="https://github.com/JeremyZhao1998/JeremyZhao1998.github.io/blob/master/images/2026-SIGMark/example-sigmark-1.gif?raw=1" alt="SIGMark watermark result 1"></td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="visual-note">
+        The videos above are generated by HunyuanVideo, each with a 512x16-bit watermark. Traditional post-processing watermarking methods such as DCT introduce visible quality degradation in generated videos, including tiny spots and stripes (in the upper left corner of the picture). In contrast, SIGMark embeds watermarks during generation and is theoretically and experimentally proved to introduce no quality loss at all.
+      </p>
+    </section>
+
+    <section>
+      <h2>Method</h2>
+      <figure>
+        <img class="teaser-img" src="https://github.com/JeremyZhao1998/SIGMark-release/blob/main/docs/teaser.png" alt="Teaser figure of SIGMark method overview.">
+      </figure>
+      <p class="method-note">
+        As video diffusion models are increasingly used to produce high-fidelity AIGC, watermarking is becoming essential for copyright attribution and for tracing harmful or misleading content back to its source. Existing approaches face a fundamental tradeoff: post processing watermarks tend to introduce visible distortion, while many distortion free, in generation schemes are not blind and therefore require storing per sample information and performing large scale matching during extraction, which becomes increasingly expensive as the platform grows. Meanwhile, practical video diffusion pipelines often rely on causal 3D VAEs, so watermark recovery can depend on preserving the original temporal structure, and common temporal edits such as clipping or frame dropping can severely degrade extraction. Our method performs in generation watermarking while addressing both scale up efficiency and robustness to temporal disturbances.
+      </p>
+      <figure>
+        <img src="https://github.com/JeremyZhao1998/SIGMark-release/blob/main/docs/method.png" alt="Detailed overview of SIGMark embedding and extraction pipeline.">
+      </figure>
+      <p class="method-intro">
+        Overview of our proposed SIGMark. Embedding: We encode the watermark message into the initial latent noise using a Global set of Frame-wise Pseudo-Random Coding (GF-PRC) keys. The diffusion model then denoises this noise into video frames that carry the embedded messages. Extraction: A (possibly disturbed) video is first processed by our proposed Segment Group-Ordering (SGO) module to recover the correct causal frame grouping, then inverted to obtain the latent noise, from which the message is decoded using the GF-PRC keys. The system stores only the GF-PRC keys for both embedding and extraction, enabling blind watermarking.
+      </p>
+      <figure>
+        <img src="https://github.com/JeremyZhao1998/SIGMark-release/blob/main/docs/method-GF-PRC.png" alt="Section 3.3 overview of SIGMark with Global Frame-wise Pseudo Random Coding.">
+      </figure>
+      <p class="method-intro">
+        Section 3.3 presents SIGMark's in-generation watermarking pipeline based on Global Frame-wise Pseudo Random Coding. For each latent-frame index \(i\), the message segment \(m[i]\) is encoded with a global key \(K[i]\) to obtain randomized template bits \(TP[i]\). These bits are then used to modulate only the sign of the sampled Gaussian noise while preserving its magnitude, yielding \(z_0(m)=(2TP-1)\odot |z_0|\), so the modified noise remains Gaussian-distributed and is thus compatible with standard diffusion sampling. The diffusion model subsequently denoises \(z_0(m)\), and the causal 3D VAE decodes the resulting latents into video frames \(VF(m)\), with the watermark propagated across causal frame groups.
+      </p>
+      <figure>
+        <img class="sgo-img" src="https://github.com/JeremyZhao1998/SIGMark-release/blob/main/docs/method-SGO.png" alt="Section 3.4 overview of Segment Group-Ordering (SGO) for robust blind extraction.">
+      </figure>
+      <p class="method-intro">
+        Section 3.4 formulates the blind extraction procedure and its robustness mechanism. Given a potentially temporally disturbed video \(VF'(m)\), the method first applies the Segment Group-Ordering (SGO) module to recover the causal grouping and frame ordering required by the causal 3D VAE encoder, as illustrated in Figure 4. SGO consists of optical-flow based segmentation to partition the video into temporally consistent contiguous segments, followed by a sliding-window detection step that leverages the global frame-wise PRC key set to identify the correct causal-group start within each segment by seeking consecutive detections of latent frame indices. After re-grouping into \(VF'_r\), diffusion-based inversion produces the estimated initial latent noise \(z'_0\), and the watermark is decoded by applying PRC decoding to the signs of \(z'_0[i]\) under the corresponding global keys, yielding \(\hat m[i]\); the use of global keys eliminates per-sample storage and avoids template matching, while SGO specifically targets robustness under clipping, frame insertion, swapping, dropping, and related temporal perturbations.
+      </p>
+    </section>
+
+    <section>
+      <h2>Experimental Results</h2>
+      <p class="result-caption">
+        Video watermarking results: message recovery bit accuracy and video quality score.
+      </p>
+      <div class="result-wrap">
+        <table class="result-table">
+          <thead>
+            <tr>
+              <th colspan="2">Diffusion model</th>
+              <th colspan="4">HunyuanVideo T2V</th>
+              <th colspan="4">HunyuanVideo I2V</th>
+            </tr>
+            <tr>
+              <th colspan="2">Watermarking</th>
+              <th colspan="2">512 bits</th>
+              <th colspan="2">512x16 bits</th>
+              <th colspan="2">512 bits</th>
+              <th colspan="2">512x16 bits</th>
+            </tr>
+            <tr>
+              <th>Method</th>
+              <th>Category</th>
+              <th>Bit acc&uarr;</th>
+              <th>V-score&uarr;</th>
+              <th>Bit acc&uarr;</th>
+              <th>V-score&uarr;</th>
+              <th>Bit acc&uarr;</th>
+              <th>V-score&uarr;</th>
+              <th>Bit acc&uarr;</th>
+              <th>V-score&uarr;</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>No-mark</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0.490</td>
+              <td>--</td>
+              <td>0.490</td>
+              <td>--</td>
+              <td>0.463</td>
+              <td>--</td>
+              <td>0.463</td>
+            </tr>
+            <tr>
+              <td>DCT</td>
+              <td>Post</td>
+              <td>0.889</td>
+              <td>0.424</td>
+              <td>0.862</td>
+              <td>0.423</td>
+              <td>0.890</td>
+              <td>0.452</td>
+              <td>0.858</td>
+              <td>0.456</td>
+            </tr>
+            <tr>
+              <td>DT-CWT</td>
+              <td>Post</td>
+              <td>0.619</td>
+              <td>0.416</td>
+              <td>0.650</td>
+              <td>0.436</td>
+              <td>0.627</td>
+              <td>0.458</td>
+              <td>0.611</td>
+              <td>0.463</td>
+            </tr>
+            <tr>
+              <td>VideoMark</td>
+              <td>None-blind</td>
+              <td>0.873</td>
+              <td>0.507</td>
+              <td>0.758</td>
+              <td>0.502</td>
+              <td>0.846</td>
+              <td>0.483</td>
+              <td>0.707</td>
+              <td>0.482</td>
+            </tr>
+            <tr>
+              <td>VideoShield</td>
+              <td>None-blind</td>
+              <td>1.000</td>
+              <td>0.497</td>
+              <td>0.991</td>
+              <td>0.506</td>
+              <td>1.000</td>
+              <td>0.482</td>
+              <td>0.999</td>
+              <td>0.482</td>
+            </tr>
+            <tr>
+              <td>SIGMark (Ours)</td>
+              <td>Blind</td>
+              <td>0.958</td>
+              <td>0.506</td>
+              <td>0.885</td>
+              <td>0.499</td>
+              <td>0.981</td>
+              <td>0.472</td>
+              <td>0.905</td>
+              <td>0.488</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="result-footnote">
+        We implement DCT and DT-CWT through the open-source code of
+        <a href="https://pypi.org/project/video-invisible-watermark/" target="_blank" rel="noopener noreferrer">video-invisible-watermark</a>
+        and
+        <a href="https://pypi.org/project/blind-video-watermark" target="_blank" rel="noopener noreferrer">blind-video-watermark</a>
+        respectively, and we implement VideoMark and VideoShield by adapting their officially released code and hyper-parameter to new diffusion models and prompts.
+      </p>
+      <p class="result-desc">
+        We compare our method against four baselines: DCT (Hartung &amp; Girod, 1998a), DT-CWT (Coria et al., 2008), VideoShield (Hu et al., 2025a), and VideoMark (Hu et al., 2025b). DCT and DT-CWT are widely used post-processing watermarking methods, while VideoShield and VideoMark are recent in-generation methods for video diffusion models but are non-blind. For post-processing baselines, we first generate standard videos with the diffusion model and then apply watermarking under different settings. As shown in Table 1, post-processing watermarking causes notable quality degradation compared with no-watermark videos, whereas in-generation methods keep visual quality essentially unaffected. SIGMark is performance-lossless (see Appendix A) and achieves very high bit accuracy under both 512-bit and 512x16-bit settings, outperforming VideoMark by large margins and remaining competitive with VideoShield, which requires access to original watermark information.
+      </p>
+      <figure>
+        <img class="timecost-img" src="https://github.com/JeremyZhao1998/SIGMark-release/blob/main/docs/timecost.png" alt="Extraction time cost comparison as total generated video count increases.">
+      </figure>
+      <p class="result-desc">
+        Baseline methods such as VideoShield and VideoMark are non-blind watermarking schemes: they require storing watermark-related information (messages, encoding keys, etc.) during generation and matching against all stored entries during extraction, so extraction cost grows with the total number of generated videos. SIGMark is blind and maintains only a global set of frame-wise PRC keys, without any sample-specific metadata during extraction, enabling constant extraction cost for large-scale platforms. We analyze extraction time under different platform scales using HunyuanVideo I2V with 512x16-bit watermark and no disturbances. For fairness, inversion runs on GPU, while the remaining extraction steps, including decryption and message matching, run on CPU. As shown in Figure 5, VideoShield scales linearly with the number of generated videos and becomes impractical at very large scale, whereas SIGMark remains constant and demonstrates strong scalability.
+      </p>
+    </section>
+
+    <section>
+      <h2>Citation</h2>
+      <pre class="citation-pre">@inproceedings{
+   zhu2026sigmark,
+   title={SIGMark: Scalable In-Generation Watermark with Blind Extraction for Video Diffusion},
+   author={Xinjie Zhu and Zijing Zhao and Hui Jin and Qingxiao Guo and Yilong Ma and Yunhao Wang and Xiaobing Guo and Weifeng Zhang},
+   booktitle={The Fourteenth International Conference on Learning Representations (ICLR)},
+   year={2026},
+   url={https://openreview.net/forum?id=tKyAD2LhnI}
+}</pre>
+    </section>
+
+    <footer>
+      This project homepage is created and maintained by <a href="https://jeremyzhao1998.github.io/" target="_blank" rel="noopener noreferrer">Zijing Zhao</a>.
+    </footer>
+  </main>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [["\\(", "\\)"]]
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</body>
+</html>
