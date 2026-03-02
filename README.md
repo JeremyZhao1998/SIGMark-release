@@ -2,7 +2,7 @@
 
 This is the official implementation for SIGMark, an in-generation video watermarking framework.
 
-[![Project Page](https://img.shields.io/badge/Project-Page-1f6f50?style=for-the-badge)](https://jeremyzhao1998.github.io/SIGMark-release/) [![OpenReview](https://img.shields.io/badge/OpenReview-Forum-1f6f50?style=for-the-badge)](https://openreview.net/forum?id=tKyAD2LhnI) [![Paper](https://img.shields.io/badge/Paper-PDF-1f6f50?style=for-the-badge)](https://openreview.net/pdf?id=tKyAD2LhnI) [![Supp.](https://img.shields.io/badge/Supp.-Material-1f6f50?style=for-the-badge)](https://openreview.net/attachment?id=tKyAD2LhnI&name=supplementary_material)
+[![Project Page](https://img.shields.io/badge/Project%20Page-000000?style=flat-square)](https://jeremyzhao1998.github.io/SIGMark-release/) [![OpenReview](https://img.shields.io/badge/OpenReview-000000?style=flat-square)](https://openreview.net/forum?id=tKyAD2LhnI) [![Paper](https://img.shields.io/badge/Paper-000000?style=flat-square)](https://openreview.net/pdf?id=tKyAD2LhnI) [![Supp.](https://img.shields.io/badge/Supp.-000000?style=flat-square)](https://openreview.net/attachment?id=tKyAD2LhnI&name=supplementary_material)
 
 ![](./docs/method.png)
 

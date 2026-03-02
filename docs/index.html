@@ -440,25 +440,25 @@
     <section>
       <h2>Method</h2>
       <figure>
-        <img class="teaser-img" src="https://github.com/JeremyZhao1998/SIGMark-release/blob/main/docs/teaser.png" alt="Teaser figure of SIGMark method overview.">
+        <img class="teaser-img" src="./teaser.png" alt="Teaser figure of SIGMark method overview.">
       </figure>
       <p class="method-note">
         As video diffusion models are increasingly used to produce high-fidelity AIGC, watermarking is becoming essential for copyright attribution and for tracing harmful or misleading content back to its source. Existing approaches face a fundamental tradeoff: post processing watermarks tend to introduce visible distortion, while many distortion free, in generation schemes are not blind and therefore require storing per sample information and performing large scale matching during extraction, which becomes increasingly expensive as the platform grows. Meanwhile, practical video diffusion pipelines often rely on causal 3D VAEs, so watermark recovery can depend on preserving the original temporal structure, and common temporal edits such as clipping or frame dropping can severely degrade extraction. Our method performs in generation watermarking while addressing both scale up efficiency and robustness to temporal disturbances.
       </p>
       <figure>
-        <img src="https://github.com/JeremyZhao1998/SIGMark-release/blob/main/docs/method.png" alt="Detailed overview of SIGMark embedding and extraction pipeline.">
+        <img src="./method.png" alt="Detailed overview of SIGMark embedding and extraction pipeline.">
       </figure>
       <p class="method-intro">
         Overview of our proposed SIGMark. Embedding: We encode the watermark message into the initial latent noise using a Global set of Frame-wise Pseudo-Random Coding (GF-PRC) keys. The diffusion model then denoises this noise into video frames that carry the embedded messages. Extraction: A (possibly disturbed) video is first processed by our proposed Segment Group-Ordering (SGO) module to recover the correct causal frame grouping, then inverted to obtain the latent noise, from which the message is decoded using the GF-PRC keys. The system stores only the GF-PRC keys for both embedding and extraction, enabling blind watermarking.
       </p>
       <figure>
-        <img src="https://github.com/JeremyZhao1998/SIGMark-release/blob/main/docs/method-GF-PRC.png" alt="Section 3.3 overview of SIGMark with Global Frame-wise Pseudo Random Coding.">
+        <img src="./method-GF-PRC.png" alt="Section 3.3 overview of SIGMark with Global Frame-wise Pseudo Random Coding.">
       </figure>
       <p class="method-intro">
         Section 3.3 presents SIGMark's in-generation watermarking pipeline based on Global Frame-wise Pseudo Random Coding. For each latent-frame index \(i\), the message segment \(m[i]\) is encoded with a global key \(K[i]\) to obtain randomized template bits \(TP[i]\). These bits are then used to modulate only the sign of the sampled Gaussian noise while preserving its magnitude, yielding \(z_0(m)=(2TP-1)\odot |z_0|\), so the modified noise remains Gaussian-distributed and is thus compatible with standard diffusion sampling. The diffusion model subsequently denoises \(z_0(m)\), and the causal 3D VAE decodes the resulting latents into video frames \(VF(m)\), with the watermark propagated across causal frame groups.
       </p>
       <figure>
-        <img class="sgo-img" src="https://github.com/JeremyZhao1998/SIGMark-release/blob/main/docs/method-SGO.png" alt="Section 3.4 overview of Segment Group-Ordering (SGO) for robust blind extraction.">
+        <img class="sgo-img" src="./method-SGO.png" alt="Section 3.4 overview of Segment Group-Ordering (SGO) for robust blind extraction.">
       </figure>
       <p class="method-intro">
         Section 3.4 formulates the blind extraction procedure and its robustness mechanism. Given a potentially temporally disturbed video \(VF'(m)\), the method first applies the Segment Group-Ordering (SGO) module to recover the causal grouping and frame ordering required by the causal 3D VAE encoder, as illustrated in Figure 4. SGO consists of optical-flow based segmentation to partition the video into temporally consistent contiguous segments, followed by a sliding-window detection step that leverages the global frame-wise PRC key set to identify the correct causal-group start within each segment by seeking consecutive detections of latent frame indices. After re-grouping into \(VF'_r\), diffusion-based inversion produces the estimated initial latent noise \(z'_0\), and the watermark is decoded by applying PRC decoding to the signs of \(z'_0[i]\) under the corresponding global keys, yielding \(\hat m[i]\); the use of global keys eliminates per-sample storage and avoids template matching, while SGO specifically targets robustness under clipping, frame insertion, swapping, dropping, and related temporal perturbations.
@@ -585,7 +585,7 @@
         We compare our method against four baselines: DCT (Hartung &amp; Girod, 1998a), DT-CWT (Coria et al., 2008), VideoShield (Hu et al., 2025a), and VideoMark (Hu et al., 2025b). DCT and DT-CWT are widely used post-processing watermarking methods, while VideoShield and VideoMark are recent in-generation methods for video diffusion models but are non-blind. For post-processing baselines, we first generate standard videos with the diffusion model and then apply watermarking under different settings. As shown in Table 1, post-processing watermarking causes notable quality degradation compared with no-watermark videos, whereas in-generation methods keep visual quality essentially unaffected. SIGMark is performance-lossless (see Appendix A) and achieves very high bit accuracy under both 512-bit and 512x16-bit settings, outperforming VideoMark by large margins and remaining competitive with VideoShield, which requires access to original watermark information.
       </p>
       <figure>
-        <img class="timecost-img" src="https://github.com/JeremyZhao1998/SIGMark-release/blob/main/docs/timecost.png" alt="Extraction time cost comparison as total generated video count increases.">
+        <img class="timecost-img" src="./timecost.png" alt="Extraction time cost comparison as total generated video count increases.">
       </figure>
       <p class="result-desc">
         Baseline methods such as VideoShield and VideoMark are non-blind watermarking schemes: they require storing watermark-related information (messages, encoding keys, etc.) during generation and matching against all stored entries during extraction, so extraction cost grows with the total number of generated videos. SIGMark is blind and maintains only a global set of frame-wise PRC keys, without any sample-specific metadata during extraction, enabling constant extraction cost for large-scale platforms. We analyze extraction time under different platform scales using HunyuanVideo I2V with 512x16-bit watermark and no disturbances. For fairness, inversion runs on GPU, while the remaining extraction steps, including decryption and message matching, run on CPU. As shown in Figure 5, VideoShield scales linearly with the number of generated videos and becomes impractical at very large scale, whereas SIGMark remains constant and demonstrates strong scalability.
