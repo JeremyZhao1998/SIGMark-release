@@ -2,15 +2,17 @@
 
 This is the official implementation for SIGMark, an in-generation video watermarking framework.
 
-[![Project Page](https://img.shields.io/badge/Project%20Page-000000?style=flat-square)](https://jeremyzhao1998.github.io/SIGMark-release/) [![OpenReview](https://img.shields.io/badge/OpenReview-000000?style=flat-square)](https://openreview.net/forum?id=tKyAD2LhnI) [![Paper](https://img.shields.io/badge/Paper-000000?style=flat-square)](https://openreview.net/pdf?id=tKyAD2LhnI) [![Supp.](https://img.shields.io/badge/Supp.-000000?style=flat-square)](https://openreview.net/attachment?id=tKyAD2LhnI&name=supplementary_material)
+[![Project Page](https://img.shields.io/badge/Project-Page-turquoise?style=flat&logo=githubpages&logoColor=white)](https://jeremyzhao1998.github.io/SIGMark-release/) [![arXiv](https://img.shields.io/badge/arXiv-2603.02882-b31b1b?style=flat)](https://arxiv.org/abs/2603.02882) [![OpenReview](https://img.shields.io/badge/OpenReview-Forum-orange?style=flat&logo=openaccess&logoColor=white)](https://openreview.net/forum?id=tKyAD2LhnI) [![Paper](https://img.shields.io/badge/Paper-PDF-red?style=flat&logo=adobeacrobatreader&logoColor=white)](https://openreview.net/pdf?id=tKyAD2LhnI) [![Supp.](https://img.shields.io/badge/Supp.-Material-blueviolet?style=flat)](https://openreview.net/attachment?id=tKyAD2LhnI&name=supplementary_material)
 
 ![](./docs/method.png)
 
-> **SIGMark: Scalable In-Generation Watermark with Blind Extraction for Video Diffusion**
-> 
-> By Xinjie Zhu, Zijing Zhao, Hui Jin, Qingxiao Guo, Yilong Ma, Yunhao Wang, Xiaobing Guo and Weifeng Zhang
-> 
-> Accpted by International Conference on Learning Representations (ICLR), 2026
+**SIGMark: Scalable In-Generation Watermark with Blind Extraction for Video Diffusion**
+
+Xinjie Zhu\*, Zijing Zhao\*, Hui Jin, Qingxiao Guo, Yilong Ma, Yunhao Wang, Xiaobing Guo and Weifeng Zhang&dagger;
+
+<sub>* Equal contribution. &dagger; Corresponding author.</sub>
+
+Accepted to International Conference on Learning Representations (ICLR), 2026
 
 ## 1. Environment preparation
 
